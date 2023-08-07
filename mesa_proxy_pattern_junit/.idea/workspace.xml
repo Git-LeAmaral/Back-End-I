@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="202432f3-a315-4d36-9e32-c1707f95f6c3" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2TMElb0CsL8uDFkdFz7FDh2wmPL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Back-End III/mesa_proxy_pattern_junit"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UsuarioTest.dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoValidaSeEPremium">
+    <configuration name="UsuarioTest.dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoNaoFazODownload" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mesa_proxy_pattern_junit" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UsuarioTest" />
+      <option name="METHOD_NAME" value="dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoNaoFazODownload" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsuarioTest.dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoValidaSeEPremium" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mesa_proxy_pattern_junit" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UsuarioTest" />
+      <option name="METHOD_NAME" value="dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoValidaSeEPremium" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UsuarioTest.dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoValidaSeEPremium" />
+        <item itemvalue="JUnit.UsuarioTest.dadaUmaSolicitacaoProxy_quandoChamamosValidar_entaoNaoFazODownload" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="202432f3-a315-4d36-9e32-c1707f95f6c3" name="Changes" comment="" />
+      <created>1690844700888</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1690844700888</updated>
+    </task>
+    <servers />
+  </component>
+</project>
