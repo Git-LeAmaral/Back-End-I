@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 public class Conta {
 
     private String id;
@@ -9,6 +11,13 @@ public class Conta {
 
     public Conta(String id, String nome, String numero, int saldo) {
         this.id = id;
+        this.nome = nome;
+        this.numero = numero;
+        this.saldo = saldo;
+    }
+
+    public Conta(String nome, String numero, int saldo) {
+        this.id = UUID.randomUUID().toString();
         this.nome = nome;
         this.numero = numero;
         this.saldo = saldo;
@@ -44,5 +53,15 @@ public class Conta {
 
     public void setSaldo(int saldo) {
         this.saldo = saldo;
+    }
+
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", numero='" + numero + '\'' +
+                ", saldo=" + saldo +
+                '}';
     }
 }
