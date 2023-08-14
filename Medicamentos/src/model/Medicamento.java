@@ -55,4 +55,15 @@ public class Medicamento {
     public void setPreco(Float preco) {
         this.preco = preco;
     }
+
+    @Override
+    public String toString() {
+        return "Medicamento{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", laboratorio=" + laboratorio +
+                ", quantidade=" + quantidade +
+                ", preco=" + preco +
+                '}';
+    }
 }

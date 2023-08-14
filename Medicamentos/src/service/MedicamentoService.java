@@ -7,25 +7,26 @@ import java.util.List;
 
 public class MedicamentoService {
 
-    private final IDao<Medicamento> daoMEdicamento;
+    private final IDao<Medicamento> daoMedicamento;
 
-    public MedicamentoService(IDao<Medicamento> daoMEdicamento) {
-        this.daoMEdicamento = daoMEdicamento;
+    public MedicamentoService(IDao<Medicamento> daoMedicamento) {
+        this.daoMedicamento = daoMedicamento;
     }
 
     public Medicamento criarMedicamento(Medicamento medicamento) {
-        return null;
+        // todo: validações que checam até se o medicamento é comercializado no Brasil, anvisa
+        return daoMedicamento.criar(medicamento);
     }
 
     public void excluirMedicamento(Integer id) {
-
+        daoMedicamento.excluir(id);
     }
 
     public List<Medicamento> buscarTodos() {
-        return null;
+        return daoMedicamento.buscarTodos();
     }
 
     public Medicamento buscaPorId(Integer id) {
-        return null;
+        return daoMedicamento.buscarPorId(id);
     }
 }

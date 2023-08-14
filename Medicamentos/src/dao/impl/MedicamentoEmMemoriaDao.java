@@ -2,11 +2,11 @@ package dao.impl;
 
 import dao.IDao;
 import model.Medicamento;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class MedicamentoEmMemoriaDao implements IDao<Medicamento> {
     private static final Logger log = Logger.getLogger(MedicamentoEmMemoriaDao.class);
