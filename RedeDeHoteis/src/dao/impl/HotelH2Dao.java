@@ -45,13 +45,13 @@ public class HotelH2Dao implements IDao<Hotel> {
             log.error(e);
             return null;
         }
-        log.info(hotel);
+        log.info(hotel.getNomeDaFilial());
         return hotel;
     }
 
-    Connection connection = configuracaoJdbc.getConnection();
     @Override
     public Hotel buscarPorId(String id) {
+        Connection connection = configuracaoJdbc.getConnection();
         log.info("Buscando rede por ID: " + id);
 
         try(PreparedStatement statement = connection.prepareStatement(SQL_BUSCAR_POR_ID)) {
@@ -85,7 +85,7 @@ public class HotelH2Dao implements IDao<Hotel> {
     @Override
     public void excluir(String id) {
         log.info("Excluindo Hotel por ID:" + id);
-
+        Connection connection = configuracaoJdbc.getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(SQL_EXCLUIR)) {
             preparedStatement.setString(1, id);
 
@@ -99,7 +99,7 @@ public class HotelH2Dao implements IDao<Hotel> {
     @Override
     public List<Hotel> buscatTodos() {
         log.info("Buscando todas as redes de hoteis");
-
+        Connection connection = configuracaoJdbc.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_BUSCAR_TODOS)) {
             List<Hotel> listaDeHoteis = new ArrayList<>();
             ResultSet resultSet = preparedStatement.executeQuery();

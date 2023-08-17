@@ -22,7 +22,7 @@ public class ServiceHotel {
     }
 
     public void excluirHotel(String id) {
-        daoHotel.buscarPorId(id);
+        daoHotel.excluir(id);
     }
 
     public List<Hotel> buscarTodos() {

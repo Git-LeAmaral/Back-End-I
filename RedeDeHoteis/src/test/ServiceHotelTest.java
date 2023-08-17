@@ -32,7 +32,6 @@ class ServiceHotelTest {
         idaoHotel.criar(hotel05);
         serviceHotel = new ServiceHotel(idaoHotel);
 
-        idaoHotel.buscarPorId(hotel.getId());
     }
 
     @Test
@@ -48,15 +47,16 @@ class ServiceHotelTest {
 
         Hotel hotel = new Hotel("Prime Hotel",Avaliacao.CINCO, "Rua Janio Quadros", 455, "Campinas", "SP");
         serviceHotel.criarHotel(hotel);
-        Hotel hotel02 = new Hotel("Cassino Tower Hotel Campinas",Avaliacao.CINCO, "Av das Amoreiras", 56, "Campinas", "SP");
-        Hotel hotel03 = new Hotel("I Am Design Hotel + Residence",Avaliacao.TRES, "Rod. Anhanguera", 89, "Campinas", "SP");
-        Hotel hotel04 = new Hotel("Meliá Campinas",Avaliacao.QUATRO, "Dr. Manoel Affonso", 667, "Campinas", "SP");
-        Hotel hotel05 = new Hotel("Vitória Hotel Express Dom Pedro",Avaliacao.DUAS, "Antonio Volpe", 335, "Campinas", "SP");
-
-
-        serviceHotel.criarHotel(hotel);
         serviceHotel.buscarId(hotel.getId());
 
+    }
+
+    @Test
+    void dadoUmHotel_quandoChamamosExcluir_entaoRetornamosHoteisMenosUm() {
+
+        Hotel hotel = new Hotel("Hotel Bela vista",Avaliacao.CINCO, "Rua Janio Quadros", 455, "Campinas", "SP");
+        serviceHotel.criarHotel(hotel);
+        serviceHotel.excluirHotel(hotel.getId());
     }
 
 }
