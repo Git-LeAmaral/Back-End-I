@@ -5,21 +5,40 @@ import java.util.UUID;
 public class Hotel {
     private String id;
     private String nomeDaFilial;
-    private Endereco endereco;
     private Avaliacao avaliacao;
+    private String rua;
+    private Integer numero;
+    private String cidade;
+    private String estado;
 
-    public Hotel(String nomeDaFilial, Endereco endereco, Avaliacao avaliacao) {
-        this.id = UUID.randomUUID().toString();
+    public Hotel(String nomeDaFilial,
+                 Avaliacao avaliacao,
+                 String rua,
+                 Integer numero, String cidade, String estado) {
+
+        this.id = UUID.randomUUID().toString();;
         this.nomeDaFilial = nomeDaFilial;
-        this.endereco = endereco;
         this.avaliacao = avaliacao;
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.estado = estado;
     }
 
-    public Hotel(String id, String nomeDaFilial, Endereco endereco, Avaliacao avaliacao) {
+    public Hotel(String id,
+                 String nomeDaFilial,
+                 Avaliacao avaliacao,
+                 String rua,
+                 Integer numero,
+                 String cidade, String estado) {
+
         this.id = id;
         this.nomeDaFilial = nomeDaFilial;
-        this.endereco = endereco;
         this.avaliacao = avaliacao;
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.estado = estado;
     }
 
     public String getId() {
@@ -38,14 +57,6 @@ public class Hotel {
         this.nomeDaFilial = nomeDaFilial;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
     public Avaliacao getAvaliacao() {
         return avaliacao;
     }
@@ -54,13 +65,48 @@ public class Hotel {
         this.avaliacao = avaliacao;
     }
 
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", nomeDaFilial='" + nomeDaFilial + '\'' +
-                ", endereco=" + endereco +
                 ", avaliacao=" + avaliacao +
+                ", rua='" + rua + '\'' +
+                ", numero=" + numero +
+                ", cidade='" + cidade + '\'' +
+                ", estado='" + estado + '\'' +
                 '}';
     }
 }

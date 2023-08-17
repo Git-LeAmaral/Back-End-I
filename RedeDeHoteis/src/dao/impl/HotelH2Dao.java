@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotelH2Dao implements IDao<Hotel> {
@@ -19,8 +20,7 @@ public class HotelH2Dao implements IDao<Hotel> {
 
     private static final String SQL_BUSCAR_POR_ID = "SELECT * FROM Hotel WHERE id = ?";
     private static final String SQL_CRIACAO = """
-            	INSERT INTO Hotel(id, nome, endereco, avaliacao) VALUES (?, ?, ?, ?);
-            	INSERT INTO Endereco(rua, numero, cidade, estado) VALUES (?, ?, ?, ?)
+            INSERT INTO Hotel(id, nome, avaliacao, rua, numero, cidade, estado) VALUES (?, ?, ?, ?, ?, ?, ?);
             	""";
 
     private static final String SQL_EXCLUIR = "DELETE FROM Hotel WHERE id = ?";
@@ -33,61 +33,94 @@ public class HotelH2Dao implements IDao<Hotel> {
         Connection connection = configuracaoJdbc.getConnection();
 
         try(PreparedStatement statement = connection.prepareStatement(SQL_CRIACAO)) {
-            statement.setString(1, hotel.getNomeDaFilial());
-            statement.setString(2, hotel.getEndereco().toString());
+            statement.setString(1, hotel.getId());
+            statement.setString(2, hotel.getNomeDaFilial());
             statement.setString(3, hotel.getAvaliacao().name());
-            statement.setString(4, hotel.getAvaliacao().name());
-            statement.setString(5, hotel.getEndereco().getRua());
-            statement.setInt(6, hotel.getEndereco().getNumero());
-            statement.setString(7, hotel.getEndereco().getCidade());
-            statement.setString(8, hotel.getEndereco().getEstado());
+            statement.setString(4, hotel.getRua());
+            statement.setInt(5, hotel.getNumero());
+            statement.setString(6, hotel.getCidade());
+            statement.setString(7, hotel.getEstado());
             statement.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
+            return null;
         }
         log.info(hotel);
         return hotel;
     }
 
+    Connection connection = configuracaoJdbc.getConnection();
     @Override
     public Hotel buscarPorId(String id) {
-        Connection connection = configuracaoJdbc.getConnection();
         log.info("Buscando rede por ID: " + id);
 
         try(PreparedStatement statement = connection.prepareStatement(SQL_BUSCAR_POR_ID)) {
             statement.setString(1, id);
+
+            log.info("Executando busca por id");
             ResultSet resultSet = statement.executeQuery();
             Hotel hotel = null;
 
+            log.info("Lendo o resultado encontrado");
             while (resultSet.next()) {
-                String hotelId = resultSet.getString(1);
-                String nomeHotel = resultSet.getString(2);
-
-                String rua = resultSet.getString(3);
-                Integer numero = resultSet.getInt(4);
-                String cidade = resultSet.getString(5);
-                String estado = resultSet.getString(6);
-                //String avaliacaoRede = resultSet.getString(7);
-                Avaliacao classificacao = Avaliacao.valueOf(resultSet.getString(8));
-                Endereco endereco = new Endereco(rua, numero, cidade, estado);
-                hotel = new Hotel(hotelId, nomeHotel, endereco, classificacao);
-
-                statement.execute();
+                Avaliacao avaliacao;
+                hotel = new Hotel(resultSet.getString(1),
+                    resultSet.getString(2),
+                    Avaliacao.valueOf(resultSet.getString(3)),
+                    resultSet.getString(4),
+                    resultSet.getInt(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7));
             }
+            log.info(hotel);
+            return hotel;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
             return null;
         }
-        return null;
+
+
     }
 
     @Override
     public void excluir(String id) {
+        log.info("Excluindo Hotel por ID:" + id);
 
+        try(PreparedStatement preparedStatement = connection.prepareStatement(SQL_EXCLUIR)) {
+            preparedStatement.setString(1, id);
+
+            log.info("Executando exclusão de hotel por ID");
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            log.error(e);
+        }
     }
 
     @Override
     public List<Hotel> buscatTodos() {
+        log.info("Buscando todas as redes de hoteis");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_BUSCAR_TODOS)) {
+            List<Hotel> listaDeHoteis = new ArrayList<>();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Hotel hotel = null;
+            while (resultSet.next()) {
+                Avaliacao avaliacao;
+                hotel = new Hotel(resultSet.getString(1),
+                        resultSet.getString(2),
+                        Avaliacao.valueOf(resultSet.getString(3)),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7));
+                        listaDeHoteis.add(hotel);
+            }
+            preparedStatement.close();
+            log.info("[HOTEIS ENCONTRADOS]:" + listaDeHoteis);
+            return listaDeHoteis;
+        } catch (Exception e) {
+            log.error(e);
+        }
         return null;
     }
 }

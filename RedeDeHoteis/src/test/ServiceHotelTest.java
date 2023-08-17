@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.ServiceHotel;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServiceHotelTest {
@@ -18,20 +20,43 @@ class ServiceHotelTest {
     @BeforeEach
     void setup() {
         IDao<Hotel> idaoHotel = new HotelH2Dao();
-        Endereco endereco = new Endereco("Avenida bps", 51, "Itajuba", "MG");
-        Hotel hotel = new Hotel("Teste01", endereco, Avaliacao.DUAS);
+        Hotel hotel = new Hotel("Prime Hotel",Avaliacao.CINCO, "Rua Janio Quadros", 455, "Campinas", "SP");
         idaoHotel.criar(hotel);
+        Hotel hotel02 = new Hotel("Cassino Tower Hotel Campinas",Avaliacao.CINCO, "Av das Amoreiras", 56, "Campinas", "SP");
+        idaoHotel.criar(hotel02);
+        Hotel hotel03 = new Hotel("I Am Design Hotel + Residence",Avaliacao.TRES, "Rod. Anhanguera", 89, "Campinas", "SP");
+        idaoHotel.criar(hotel03);
+        Hotel hotel04 = new Hotel("Meliá Campinas",Avaliacao.QUATRO, "Dr. Manoel Affonso", 667, "Campinas", "SP");
+        idaoHotel.criar(hotel04);
+        Hotel hotel05 = new Hotel("Vitória Hotel Express Dom Pedro",Avaliacao.DUAS, "Antonio Volpe", 335, "Campinas", "SP");
+        idaoHotel.criar(hotel05);
         serviceHotel = new ServiceHotel(idaoHotel);
+
+        idaoHotel.buscarPorId(hotel.getId());
+    }
+
+    @Test
+    void dadoUmaConsultaDeHotel_quandoChamamosBuscarTodos_entaoRetornarTodosHoteis() {
+
+        List<Hotel> hoteisEncontrados = serviceHotel.buscarTodos();
+
+        Assertions.assertEquals(5, hoteisEncontrados.size());
     }
 
     @Test
     void dadoUmHotel_quandoChamamosCriar_entaoRetornarCriacao() {
-        /*
-        Paciente paciente = null;
-        String nomePaciente = paciente.getNome();
-        Assertions.assertNull(nomePaciente);
 
-         */
+        Hotel hotel = new Hotel("Prime Hotel",Avaliacao.CINCO, "Rua Janio Quadros", 455, "Campinas", "SP");
+        serviceHotel.criarHotel(hotel);
+        Hotel hotel02 = new Hotel("Cassino Tower Hotel Campinas",Avaliacao.CINCO, "Av das Amoreiras", 56, "Campinas", "SP");
+        Hotel hotel03 = new Hotel("I Am Design Hotel + Residence",Avaliacao.TRES, "Rod. Anhanguera", 89, "Campinas", "SP");
+        Hotel hotel04 = new Hotel("Meliá Campinas",Avaliacao.QUATRO, "Dr. Manoel Affonso", 667, "Campinas", "SP");
+        Hotel hotel05 = new Hotel("Vitória Hotel Express Dom Pedro",Avaliacao.DUAS, "Antonio Volpe", 335, "Campinas", "SP");
+
+
+        serviceHotel.criarHotel(hotel);
+        serviceHotel.buscarId(hotel.getId());
+
     }
 
 }
