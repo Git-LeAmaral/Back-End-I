@@ -5,6 +5,7 @@ import dao.impl.HotelH2Dao;
 import model.Avaliacao;
 import model.Endereco;
 import model.Hotel;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.ServiceHotel;
@@ -25,7 +26,12 @@ class ServiceHotelTest {
 
     @Test
     void dadoUmHotel_quandoChamamosCriar_entaoRetornarCriacao() {
+        /*
+        Paciente paciente = null;
+        String nomePaciente = paciente.getNome();
+        Assertions.assertNull(nomePaciente);
 
+         */
     }
 
 }
