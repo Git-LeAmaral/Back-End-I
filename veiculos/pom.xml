@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.digitalhouse</groupId>
-	<artifactId>dentistas</artifactId>
+	<artifactId>veiculos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dentistas</name>
-	<description>projeto dentistas usando spring</description>
+	<name>veiculos</name>
+	<description>Mesa de trabalho Veiculo com padrão MVC </description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -48,16 +48,6 @@
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
 			<version>1.33</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
