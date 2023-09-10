@@ -26,5 +26,4 @@ public class Contato {
     private Instant createdAt;
 
     private Instant updateAt;
-
 }

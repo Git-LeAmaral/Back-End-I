@@ -1,5 +1,6 @@
 package br.com.clicanicaodontologica.clinicacheckpoint.domain.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,14 +13,23 @@ import java.util.UUID;
 @Entity
 public class Clinica {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private  UUID id;
 
-    @Column
+    @ManyToMany
+    @JoinTable(
+            name = "clinicaDentistas",
+            joinColumns = @JoinColumn(name = "id_dentista"),
+            inverseJoinColumns = @JoinColumn(name = "id_")
+    )
     private String nome;
 
-    @Column(length = 80)
+    @Column(nullable = false)
+    private String cnpj;
+
+    @Column(length = 80, nullable = false)
     private String razaoSocial;
 
     private Instant createdAt;
@@ -33,3 +43,4 @@ public class Clinica {
 
     private Contato contato;
 }
+
