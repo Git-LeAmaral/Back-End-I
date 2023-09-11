@@ -14,5 +14,5 @@ public class ContatoResponse {
     private String email;
     private String telefone;
     private Instant createdAt;
-    private Instant updateAt;
+    private Instant updatedAt;
 }

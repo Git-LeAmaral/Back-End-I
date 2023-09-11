@@ -10,20 +10,19 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "contatos")
-public class Contato {
+@Table(name = "consultas")
+public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    @Column(length = 100)
-    private String email;
-
-    @Column(length = 15)
-    private String telefone;
-
+    private Paciente paciente;
+    private Clinica clinica;
+    private Instant dataConsulta;
     private Instant createdAt;
-
     private Instant updatedAt;
+    private String descricao;
+    private Boolean cancelada;
+    @Column(length = 80)
+    private String motivoCancelamento;
 }

@@ -1,7 +1,8 @@
-package br.com.clicanicaodontologica.clinicacheckpoint.domain.service;
+package br.com.clicanicaodontologica.clinicacheckpoint.domain.service.impl;
 
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Clinica;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.repository.ClinicaRepository;
+import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.ClinicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,22 @@ public class ClinicaServiceImpl implements ClinicaService {
     }
 
     @Override
-    public List<Clinica> buscarClinicas(String termo) {
+    public List<Clinica> buscarClinicas() {
         return this.clinicaRepository.findAll();
     }
 
     @Override
     public Clinica buscarClinicaPorId(UUID id) {
         return this.clinicaRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public Clinica atualizarClinica(UUID id) {
+        return this.clinicaRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public void deletarClinica(UUID id) {
+        this.clinicaRepository.deleteById(id);
     }
 }

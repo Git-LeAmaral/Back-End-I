@@ -30,8 +30,8 @@ public class ClinicaController {
     }
 
     @GetMapping
-    ResponseEntity<ClinicaWrapperResponse> buscarTodosPorTermo(@RequestParam String termo) {
-        List<Clinica> clinicas = clinicaService.buscarClinicas(termo);
+    ResponseEntity<ClinicaWrapperResponse> buscarTodosPorTermo() {
+        List<Clinica> clinicas = clinicaService.buscarClinicas();
 
         ClinicaWrapperResponse clinicaWrapperResponse = new ClinicaWrapperResponse();
         clinicaWrapperResponse.setClinicas(clinicas.stream().map(clinica -> {
