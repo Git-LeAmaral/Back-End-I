@@ -15,19 +15,10 @@ import java.util.UUID;
 @Table(name = "clinicas")
 public class Clinica {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private  UUID id;
 
-    @ManyToMany
-    @JoinTable(
-            name = "clinicaDentistas",
-            joinColumns = @JoinColumn(name = "id_dentista"),
-            inverseJoinColumns = @JoinColumn(name = "id_"),
-            foreignKey = @ForeignKey(name = "fk_clinica_dentista")
-    )
-    private Set<Dentista> clinicaDentista;
     private String nome;
 
     @Column(nullable = false)
@@ -43,8 +34,16 @@ public class Clinica {
     @Column
     private String descricao;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco",
+        referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_endereco_clinica")
+    )
     private Endereco endereco;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_contato",
+            referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_contato_clinica")
+    )
     private Contato contato;
 }
 

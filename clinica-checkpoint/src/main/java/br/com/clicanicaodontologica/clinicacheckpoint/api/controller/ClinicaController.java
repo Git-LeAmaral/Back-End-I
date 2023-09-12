@@ -30,7 +30,7 @@ public class ClinicaController {
     }
 
     @GetMapping
-    ResponseEntity<ClinicaWrapperResponse> buscarTodosPorTermo() {
+    ResponseEntity<ClinicaWrapperResponse> buscarTodasClinicas() {
         List<Clinica> clinicas = clinicaService.buscarClinicas();
 
         ClinicaWrapperResponse clinicaWrapperResponse = new ClinicaWrapperResponse();
@@ -66,6 +66,8 @@ public class ClinicaController {
 
         clinica.setContato(contato);
         clinica.setEndereco(endereco);
+
+
         Clinica clinicaCriada = clinicaService.criar(clinica);
         return ResponseEntity.ok(clinicaCriada.getId());
     }
@@ -93,8 +95,8 @@ public class ClinicaController {
         endereco.setEstado(clinica.getEndereco().getEstado());
         endereco.setCep(clinica.getEndereco().getCep());
 
-        //clinicaResponse.setContato(contato);
-        //clinicaResponse.setEndereco(endereco);
+        clinicaResponse.setContato(contato);
+        clinicaResponse.setEndereco(endereco);
         return clinicaResponse;
     }
 }

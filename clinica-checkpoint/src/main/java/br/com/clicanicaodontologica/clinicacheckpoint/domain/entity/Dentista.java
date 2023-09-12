@@ -24,7 +24,21 @@ public class Dentista {
     private Instant createdAt;
     private Instant updatedAt;
     private GeneroEnum generoEnum;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_contato" ,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "fk_contato_dentista"))
     private Contato contato;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco" ,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "fk_endereco_dentista"))
     private Endereco endereco;
+    @ManyToMany
+    @JoinTable(
+            name = "clinicaDentista",
+            joinColumns = @JoinColumn(name = "id_dentista"),
+            inverseJoinColumns = @JoinColumn(name = "id_clinica"))
     private Set<Consulta> consultas;
 }

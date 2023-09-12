@@ -1,19 +1,16 @@
 package br.com.clicanicaodontologica.clinicacheckpoint.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
 @Getter
 @Setter
+@Entity
 public class Paciente {
 
     @Id
@@ -32,9 +29,16 @@ public class Paciente {
     @Column(length = 1)
     private GeneroEnum generoEnum;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco",
+            referencedColumnName = "id", foreignKey =
+    @ForeignKey(name = "fk_endereco_paciente"))
     private Endereco endereco;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_contato",
+            referencedColumnName = "id", foreignKey =
+    @ForeignKey(name = "fk_contato_paciente"))
     private Contato contato;
-    private Set<Consulta> consultas;
 
 }

@@ -18,6 +18,6 @@ public class ClinicaResponse {
     private Instant createdAt;
     private Instant updateAt;
     private String descricao;
-    private Endereco endereco;
-    private Contato contato;
+    private EnderecoResponse endereco;
+    private ContatoResponse contato;
 }
