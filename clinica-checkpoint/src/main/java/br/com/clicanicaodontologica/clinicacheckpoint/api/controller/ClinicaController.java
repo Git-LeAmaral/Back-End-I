@@ -6,18 +6,22 @@ import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Clinica;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Contato;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Endereco;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.ClinicaService;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-
+@Slf4j
 @RestController
-@RequestMapping("clinicas")
+@RequestMapping("v1/clinicas")
 public class ClinicaController {
 
     private final ClinicaService clinicaService;
 
+    @Autowired
     public ClinicaController(ClinicaService clinicaService) {
         this.clinicaService = clinicaService;
     }
@@ -45,7 +49,7 @@ public class ClinicaController {
     }
 
     @PostMapping
-    ResponseEntity<?> criarClinica(@RequestBody ClinicaRequest request) {
+    ResponseEntity<?> criarClinica(@RequestBody @Valid ClinicaRequest request) {
 
         Clinica clinica = new Clinica();
         clinica.setCnpj(request.getCnpj());
@@ -67,9 +71,8 @@ public class ClinicaController {
         clinica.setContato(contato);
         clinica.setEndereco(endereco);
 
-
         Clinica clinicaCriada = clinicaService.criar(clinica);
-        return ResponseEntity.ok(clinicaCriada.getId());
+        return ResponseEntity.ok(clinicaCriada);
     }
 
 

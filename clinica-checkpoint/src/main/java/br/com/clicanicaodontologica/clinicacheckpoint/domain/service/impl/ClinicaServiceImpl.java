@@ -1,6 +1,8 @@
 package br.com.clicanicaodontologica.clinicacheckpoint.domain.service.impl;
 
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Clinica;
+import br.com.clicanicaodontologica.clinicacheckpoint.domain.exception.BadRequestCnpjException;
+import br.com.clicanicaodontologica.clinicacheckpoint.domain.exception.NotFoundException;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.repository.ClinicaRepository;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.ClinicaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,27 +18,45 @@ public class ClinicaServiceImpl implements ClinicaService {
 
     @Autowired
     public ClinicaServiceImpl(ClinicaRepository clinicaRepository) {
+
         this.clinicaRepository = clinicaRepository;
     }
 
     @Override
     public Clinica criar(Clinica clinica) {
+
+        boolean cnpjExist = this.clinicaRepository.existsByCnpj(clinica.getCnpj());
+        if (cnpjExist) {
+            throw new BadRequestCnpjException(clinica.getCnpj());
+        }
         return this.clinicaRepository.save(clinica);
     }
 
     @Override
     public List<Clinica> buscarClinicas() {
-        return this.clinicaRepository.findAll();
+
+            return this.clinicaRepository.findAll();
     }
 
     @Override
     public Clinica buscarClinicaPorId(UUID id) {
-        return this.clinicaRepository.findById(id).orElseThrow();
+
+        try {
+            return this.clinicaRepository.findById(id).orElseThrow();
+
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
     }
 
     @Override
-    public Clinica atualizarClinica(UUID id) {
-        return this.clinicaRepository.findById(id).orElseThrow();
+    public Clinica atualizarClinica(UUID id, Clinica clinica) {
+        try {
+            clinicaRepository.findById(id).orElseThrow();
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+        return clinicaRepository.save(clinica);
     }
 
     @Override
