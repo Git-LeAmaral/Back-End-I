@@ -10,6 +10,7 @@ import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Dentista;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.DentistaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,10 @@ public class DentistaController {
         this.dentistaService = dentistaService;
     }
 
+
     @GetMapping
     ResponseEntity<DentistaWrapperResponse> buscarDentistas(@RequestParam(required = false) String termo) {
+
         List<Dentista> dentistas = dentistaService.buscarDentistas(termo);
         DentistaWrapperResponse dentistaWrapperResponse = new DentistaWrapperResponse();
 
@@ -39,10 +42,13 @@ public class DentistaController {
             dentistaListResponse.setId(dentista.getId());
             dentistaListResponse.setNome(dentista.getNome());
             dentistaListResponse.setCro(dentista.getCro());
+
             return dentistaListResponse;
+
         }).toList());
 
         return ResponseEntity.ok(dentistaWrapperResponse);
+
     }
 
     @GetMapping("{id}")

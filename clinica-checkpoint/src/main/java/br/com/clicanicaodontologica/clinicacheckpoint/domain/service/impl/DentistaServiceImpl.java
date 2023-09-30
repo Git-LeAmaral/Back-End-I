@@ -30,7 +30,7 @@ public class DentistaServiceImpl implements DentistaService {
 
     @Override
     public List<Dentista> buscarDentistas(String termo) {
-        return dentistaRepository.FindByNomeStartingWith(termo);
+        return dentistaRepository.findByNomeStartingWith(termo);
     }
 
     @Override

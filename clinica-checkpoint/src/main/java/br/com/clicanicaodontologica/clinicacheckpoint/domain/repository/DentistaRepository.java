@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface DentistaRepository extends JpaRepository<Dentista, UUID> {
-    List<Dentista> FindByNomeStartingWith(String termo);
+    List<Dentista> findByNomeStartingWith(String termo);
 }

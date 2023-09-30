@@ -77,7 +77,7 @@ public class ClinicaController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("{id")
+    @PutMapping("{id}")
     ResponseEntity<ClinicaResponse> atualizarClinica(@PathVariable UUID id, @RequestBody @Valid ClinicaRequest request) {
         Clinica clinica = clinicaService.buscarClinicaPorId(id);
         clinica.setCnpj(request.getCnpj());
@@ -103,7 +103,7 @@ public class ClinicaController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("{id")
+    @DeleteMapping("{id}")
     ResponseEntity<Void> deletarClinica(@PathVariable UUID id) {
         clinicaService.deletarClinica(id);
         return ResponseEntity.ok().build();
