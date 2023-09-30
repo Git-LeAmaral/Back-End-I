@@ -99,7 +99,7 @@ public class DentistaController {
 
         dentista.setClinicasDentistas(request.getClinicasDentistas());
 
-        Dentista dentistaAtualizado = dentistaService.criarDentista(dentista);
+        Dentista dentistaAtualizado = dentistaService.atualizarDentista(id, dentista);
         DentistaResponse response = dentistaResponseByDentista(dentistaAtualizado);
 
         return ResponseEntity.ok(response);
