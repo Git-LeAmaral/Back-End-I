@@ -6,11 +6,13 @@ import br.com.clicanicaodontologica.clinicacheckpoint.domain.exception.NotFoundE
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.repository.ConsultaRepository;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class ConsultaServiceImpl implements ConsultaService {
 
     private final ConsultaRepository consultaRepository;

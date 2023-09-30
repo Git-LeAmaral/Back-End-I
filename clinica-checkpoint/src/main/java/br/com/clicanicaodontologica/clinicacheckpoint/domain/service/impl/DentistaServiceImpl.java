@@ -6,15 +6,17 @@ import br.com.clicanicaodontologica.clinicacheckpoint.domain.exception.NotFoundE
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.repository.DentistaRepository;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-
+@Service
 public class DentistaServiceImpl implements DentistaService {
 
     private final DentistaRepository dentistaRepository;
     @Autowired
     public DentistaServiceImpl(DentistaRepository dentistaRepository) {
+
         this.dentistaRepository = dentistaRepository;
     }
 

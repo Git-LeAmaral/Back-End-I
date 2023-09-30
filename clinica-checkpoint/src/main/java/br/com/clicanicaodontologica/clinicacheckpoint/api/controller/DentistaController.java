@@ -76,7 +76,7 @@ public class DentistaController {
     }
 
     @PutMapping("{id}")
-    ResponseEntity<DentistaResponse> atualizarDentista(@PathVariable UUID id, @RequestBody DentistaRequest request) {
+    ResponseEntity<DentistaResponse> atualizarDentista(@PathVariable UUID id, @RequestBody @Valid DentistaRequest request) {
 
         Dentista dentista = dentistaService.buscarDentistaPorId(id);
 
