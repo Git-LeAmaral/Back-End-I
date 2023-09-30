@@ -33,9 +33,9 @@ public class ClinicaServiceImpl implements ClinicaService {
     }
 
     @Override
-    public List<Clinica> buscarClinicas() {
+    public List<Clinica> buscarClinicas(String termo) {
 
-            return this.clinicaRepository.findAll();
+        return clinicaRepository.findByNomeStartingWith(termo);
     }
 
     @Override
@@ -61,6 +61,11 @@ public class ClinicaServiceImpl implements ClinicaService {
 
     @Override
     public void deletarClinica(UUID id) {
-        this.clinicaRepository.deleteById(id);
+        try {
+            clinicaRepository.findById(id).orElseThrow();
+            clinicaRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
     }
 }

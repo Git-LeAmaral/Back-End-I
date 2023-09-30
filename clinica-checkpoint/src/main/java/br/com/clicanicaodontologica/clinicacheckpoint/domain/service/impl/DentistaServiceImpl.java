@@ -1,6 +1,8 @@
 package br.com.clicanicaodontologica.clinicacheckpoint.domain.service.impl;
 
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.entity.Dentista;
+import br.com.clicanicaodontologica.clinicacheckpoint.domain.exception.BadRequestContatoException;
+import br.com.clicanicaodontologica.clinicacheckpoint.domain.exception.NotFoundException;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.repository.DentistaRepository;
 import br.com.clicanicaodontologica.clinicacheckpoint.domain.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +20,43 @@ public class DentistaServiceImpl implements DentistaService {
 
     @Override
     public Dentista criarDentista(Dentista dentista) {
-        return null;
+        if (dentista.getContato().getEmail() == null && dentista.getContato().getTelefone() == null) {
+            throw new BadRequestContatoException();
+        }
+        return dentistaRepository.save(dentista);
     }
 
     @Override
-    public List<Dentista> buscarDentistas() {
-        return null;
+    public List<Dentista> buscarDentistas(String termo) {
+        return dentistaRepository.FindByNomeStartingWith(termo);
     }
 
     @Override
     public Dentista buscarDentistaPorId(UUID id) {
-        return null;
+        try {
+            return dentistaRepository.findById(id).orElseThrow();
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
     }
 
     @Override
-    public Dentista atualizarDentista(UUID id) {
-        return null;
+    public Dentista atualizarDentista(UUID id, Dentista dentista) {
+        try {
+            dentistaRepository.findById(id).orElseThrow();
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+        return dentistaRepository.save(dentista);
     }
 
     @Override
     public void deletarDentista(UUID id) {
-
+        try {
+            dentistaRepository.findById(id).orElseThrow();
+            dentistaRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
     }
 }

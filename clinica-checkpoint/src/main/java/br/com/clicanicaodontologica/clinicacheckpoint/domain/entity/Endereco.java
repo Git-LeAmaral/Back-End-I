@@ -15,6 +15,7 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name="id")
     private UUID id;
 
     @Column(length = 100)

@@ -15,6 +15,7 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name="id")
     private UUID id;
 
     @Column(length = 80, nullable = false)

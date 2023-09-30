@@ -16,6 +16,7 @@ public class Dentista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
     private String cro;
     private String nome;
@@ -38,7 +39,19 @@ public class Dentista {
     @ManyToMany
     @JoinTable(
             name = "clinicaDentista",
-            joinColumns = @JoinColumn(name = "id_dentista"),
-            inverseJoinColumns = @JoinColumn(name = "id_clinica"))
-    private Set<Consulta> consultas;
+            joinColumns = @JoinColumn(name = "id_dentista",
+                    foreignKey = @ForeignKey(name = "fk_dentista_clinica")),
+            inverseJoinColumns = @JoinColumn(name = "id_clinica",
+                    foreignKey = @ForeignKey(name = "fk_clinica_dentista")))
+    private Set<Clinica> clinicasDentistas;
+
+    @PrePersist
+    public void criando() {
+        this.createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    public void atualizando() {
+        this.updatedAt = Instant.now();
+    }
 }

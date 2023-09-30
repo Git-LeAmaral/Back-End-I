@@ -15,6 +15,7 @@ public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @ManyToOne
@@ -44,4 +45,14 @@ public class Consulta {
     private Boolean cancelada;
     @Column(length = 80)
     private String motivoCancelamento;
+
+    @PrePersist
+    public void criando() {
+        this.createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    public void atualizando() {
+        this.updatedAt = Instant.now();
+    }
 }

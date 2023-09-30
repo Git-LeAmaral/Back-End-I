@@ -12,5 +12,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
     Optional<Produto> findByIdAndQuantidadeGreaterThan(Integer id, Integer quantidade);
 
-    List<Produto>  findAllByQuantidadeIsGreaterThan(Integer quantidade);
+    List<Produto>  findAllByQuantidadeIsGreaterThan(Integer quantidade); 
 }
